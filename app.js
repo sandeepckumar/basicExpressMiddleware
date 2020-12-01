@@ -21,6 +21,9 @@ app.get("/download/:fileName", (req, res) => {
     if (req.params['fileName'])
     {
         res.status(200).download(path.resolve(`${process.env.FILE_PATH}/${req.params['fileName']}`))
+    } else
+    {
+        res.status(401).send("requires param: filename")
     }
 })
 

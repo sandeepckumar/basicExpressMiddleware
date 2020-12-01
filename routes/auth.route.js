@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const {formatter} = require("../middleware/formatting")
 
-router.post('/signup', (req, res) => {
+router.post('/signup', formatter, (req, res) => {
     if (req.body.name && req.body.password && req.body.email)
     {
-        res.send(201).send("User Subscribed")
+
+        res.status(201).send(req.body)
     } else
     {
         res.status(503).send("Please send body in the following manner:\n{\n'name':'User Name',\n'password':'Password'\n,\n'email':'your email address'\n} ")
